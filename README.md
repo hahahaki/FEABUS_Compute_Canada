@@ -52,3 +52,14 @@ In some cases, rendering may not execute correctly if leftover files from previo
 
 2. If corrections are made (e.g., new matches or transformations), delete any previously generated intermediate files (`matches`, `tforms`, etc.).  
    FEABUS skips computation if it detects these files, assuming the step is already complete.
+
+## Using Multiple Nodes on the Cluster
+
+To accelerate the stitching and alignment process, you can leverage multiple nodes and CPUs when submitting jobs on Compute Canada.
+
+Here is an example using SLURM job arrays with `srun python`:
+
+```bash
+#SBATCH --array=0-100  # Adjust this range based on the number of jobs required (e.g., 101 jobs)
+srun python /home/codee/scratch/feabas/scripts/thumbnail_main.py --mode match --start $start --stop $stop --step 1
+```
