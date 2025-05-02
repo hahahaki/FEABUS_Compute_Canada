@@ -1,0 +1,7 @@
+2025-01-20 13:59:25-INFO: s0001: residue after translation 0.0 | discarded 0
+2025-01-20 13:59:25-INFO: s0001: residue after grouped relaxation 0.0 | cost (0.0, 0.0)
+2025-01-20 13:59:25-INFO: |s0001| cost: (0.0, 0.0) | residue: 0.0 | discarded: 0 | rotation: 0 | 1/1 components | finished 0.7698438167572021 sec 
+2025-01-20 13:59:25-INFO: s0002: residue after translation 0.0 | discarded 0
+2025-01-20 13:59:26-INFO: s0002: residue after grouped relaxation 0.0 | cost (0.0, 0.0)
+2025-01-20 13:59:26-INFO: |s0002| cost: (0.0, 0.0) | residue: 0.0 | discarded: 0 | rotation: 0 | 1/1 components | finished 0.810798168182373 sec 
+2025-01-20 13:59:26-INFO: finished.

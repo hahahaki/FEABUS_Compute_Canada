@@ -1,0 +1,4 @@
+2025-01-19 15:18:55-ERROR: /home/codee/scratch/feabas/small_dataset/raw_data/s0001: module 'triangle' has no attribute 'triangulate'
+	section_set_11_section_001.tif <-> section_set_11_section_001.tif
+2025-01-19 15:19:19-ERROR: /home/codee/scratch/feabas/small_dataset/raw_data/s0002: module 'triangle' has no attribute 'triangulate'
+	section_set_11_section_002.tif <-> section_set_11_section_002.tif

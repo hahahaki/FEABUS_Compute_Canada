@@ -1,0 +1,5 @@
+{ROOT_DIR}	/home/codee/scratch/feabas/small_dataset/raw_data/s0002
+{RESOLUTION}	4.0
+{TILE_SIZE}	13441	10587
+section_set_11_section_002.tif	0	0
+section_set_11_section_002.tif	0	0
