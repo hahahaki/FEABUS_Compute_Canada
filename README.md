@@ -1,25 +1,54 @@
 # FEABUS_Compute_Canada
-EM stitch and alignment on compute canada server
+
+**EM Stitching and Alignment on Compute Canada Clusters**
 
 ## Overview
-FEABUS (https://github.com/YuelongWu/feabas) is a very useful pipeline to realize the EM volume reconstruction by stitch and alignment from the 2d raw tiles. To make it possible to run on the clusters in Compute Canada, I listed a comprehensive pipeline where it could be referred on to use multiple computers running your large dataset alignment efficiently. 
 
-## Set up Compute Canada environment
-We need to first have the FEABUS repository cloned to the folder you will be working on:
+[FEABUS](https://github.com/YuelongWu/feabas) is a powerful pipeline designed for electron microscopy (EM) volume reconstruction via stitching and alignment of raw 2D tiles. This repository provides a practical guide to running FEABUS efficiently on Compute Canada’s high-performance computing clusters. It includes examples of directory organization, image placement, and a workflow for parallel processing of large datasets.
+
+## Setup on Compute Canada
+
+### 1. Clone the FEABUS Repository
+
+Start by cloning the official FEABUS repository into your working directory:
+
 ```bash
 git clone https://github.com/YuelongWu/feabas.git
 ```
 
-I offered a run.slurm file as an example to set up all the python packages FEABUS requires. Note that we need to have the triangle wheel and the requirements.txt (I offered both) to the FEABUS respository first. And then use the command to upload the job to the server
+### 2. Prepare the Environment
+
+A sample `run.slurm` file is provided to set up the necessary Python environment and dependencies on Compute Canada. Make sure the following files are placed in the FEABUS root directory:
+- `requirements.txt`
+- Pre-built `triangle` wheel (`.whl`) file
+
+Then, submit the job to the scheduler:
+
 ```bash
 sbatch run.slurm
 ```
-## Following the instructions of FEABUS
-We need to make sure that every time in the .slurm file you upload, we need to match the step we will be wroking on. e.g. when we are working on the alignment rendering step, we will need to make the "srun python" command to be:
+
+## Running FEABUS on the Cluster
+
+Follow the FEABUS instructions carefully, but with an important note: for each SLURM script you submit, ensure that the `srun` command matches the specific processing step you're executing.
+
+For example, to run the alignment rendering step:
+
 ```bash
 srun python /home/codee/scratch/feabas/scripts/align_main.py --mode rendering
 ```
-## Rendering issue
-The rendering was not done in the same run and some old files came into the way (unlikely). To make sure this didn't happen, it is recommended to run tools/normalize_aligned_meshes.py after the alignment optimization but BEFORE any rendering is done.
 
-We'll need to delete affected files (matches, tforms etc) when you made a correction. Otherwise if the program found the file, it would assume completion and skip the computation.
+Make sure to change the mode (`--mode`) appropriately for each processing stage (e.g., `matching`, `optimization`, `rendering`).
+
+## Rendering Notes and Troubleshooting
+
+In some cases, rendering may not execute correctly if leftover files from previous runs are present. To avoid this issue:
+
+1. After alignment optimization and **before** any rendering step, run the normalization script:
+
+   ```bash
+   python tools/normalize_aligned_meshes.py
+   ```
+
+2. If corrections are made (e.g., new matches or transformations), delete any previously generated intermediate files (`matches`, `tforms`, etc.).  
+   FEABUS skips computation if it detects these files, assuming the step is already complete.
