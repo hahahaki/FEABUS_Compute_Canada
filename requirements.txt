@@ -1,0 +1,11 @@
+dill
+h5py
+numpy<2
+psutil
+pyyaml
+rtree
+scikit-image
+scipy
+shapely>=2.0.0
+tensorstore
+
